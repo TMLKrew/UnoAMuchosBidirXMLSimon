@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="es.albarregas.beans.Persona" table="persona1anBidirXML">
+    <id name="idPerso" type="java.lang.Long">
+            <column name="idPersona"/>
+            <generator class="identity"/>               
+        </id>
+        <property name="nombre" length="30" not-null="true"/>
+        <list name="libros" cascade="all" lazy="false">
+                       
+        <key>
+                <column name="personaId"/>
+            </key>
+            <index>
+                <column name="orden"/>
+            </index>
+            <one-to-many class="es.albarregas.beans.Libro"/>
+        </list>
+  </class>
+</hibernate-mapping>
