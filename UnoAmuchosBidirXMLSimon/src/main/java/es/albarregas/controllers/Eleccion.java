@@ -5,6 +5,7 @@
  */
 package es.albarregas.controllers;
 
+import es.albarregas.beans.Libro;
 import es.albarregas.beans.Persona;
 import es.albarregas.dao.IGenericoDAO;
 import es.albarregas.daofactory.DAOFactory;
@@ -45,8 +46,11 @@ public class Eleccion extends HttpServlet {
             case "delete":
             case "update":
             case "list":
-                List<Persona> listaPers = gdao.selectAll(Persona.class); 
+                List<Persona> listaPers = gdao.selectAll(Persona.class);
                 request.setAttribute("listado", listaPers);
+            case "listLibros":
+                List<Libro> listaLibros = gdao.selectAll(Libro.class);
+                request.setAttribute("listadoLibros", listaLibros);
 
         }
         switch (request.getParameter("op")) {
@@ -58,6 +62,9 @@ public class Eleccion extends HttpServlet {
                 break;
             case "update":
                 url = "JSP/actual.jsp";
+                break;
+            case "listLibros":
+                url = "JSP/listadoLibros.jsp";
                 break;
         }
         request.getRequestDispatcher(url).forward(request, response);

@@ -10,7 +10,7 @@
         <property name="titulo">
             <column name="titulo" length="30" not-null="true"/>
         </property>
-        <many-to-one name="persona" column="personaId"/>
+        <many-to-one name="persona" column="personaId" lazy="false" />
        
     </class>
 </hibernate-mapping>
